@@ -2,9 +2,8 @@ console.log("Hello, Player!");
 let playerScore = 0;
 let computerScore = 0;
 
-function playRound() {
-    let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice()
+function playRound(computerChoice, playerChoice) {
+    console.log("Computer selected: " + computerChoice)
 
     let winStr = `Congratulations! ${playerChoice} beats ${computerChoice}!`;
     let loseStr = `Aww, ${computerChoice} beats ${playerChoice}!`
@@ -14,27 +13,32 @@ function playRound() {
     } else if (computerChoice === "Rock") {
         if (playerChoice === "Paper") {
             console.log(winStr);
+            playerScore++
         } else {
             console.log(loseStr);
+            computerScore++
         }
     } else if (computerChoice === "Paper") {
         if (playerChoice === "Scissors") {
             console.log(winStr);
+            playerScore++
         } else {
             console.log(loseStr);
+            computerScore++
         }
     } else {
         if (playerChoice === "Rock") {
             console.log(winStr);
+            playerScore++
         } else {
             console.log(loseStr);
+            computerScore++
         }
     }
 
-    console.log(`Total score is ${playerScore} for you and ${computerScore} for computer!`)
-    if (confirm("Want to play again!")) {
-        playRound()
-    }
+    // if (confirm("Want to play again?")) {
+    //     playRound()
+    // }
 
 }
 
@@ -51,11 +55,7 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice () {
-    let playerChoice = null;
-
-    while (!playerChoice) {
-        playerChoice = prompt("Rock, Paper or Scissors? What is your choice?");    
-    }
+    playerChoice = prompt("Rock, Paper or Scissors? What is your choice?");    
 
     switch (playerChoice.toLocaleLowerCase()) {
         case "rock":
@@ -68,5 +68,14 @@ function getPlayerChoice () {
             return getPlayerChoice()
     }
 }
-
-playRound()
+for (x = 0; x < 5; x++) {
+    playRound(getComputerChoice(), getPlayerChoice())
+}
+console.log(`Total score is ${playerScore} for you and ${computerScore} for computer!`)
+if (playerScore > computerScore) {
+    console.log("Yay, you won overall! Congrats!")
+} else if (playerScore < computerScore) {
+    console.log("Oh, computer won, better luck next time!")
+} else {
+    console.log("It's a tie! You might wanna play again to see who will win!")
+}
