@@ -79,5 +79,3 @@ if (playerScore > computerScore) {
 } else {
     console.log("It's a tie! You might wanna play again to see who will win!")
 }
-
-// Added comment for testing
