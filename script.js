@@ -2,7 +2,10 @@ console.log("Hello, Player!");
 let playerScore = 0;
 let computerScore = 0;
 
-function playRound(computerChoice, playerChoice) {
+function playRound(event) {
+    let computerChoice = getComputerChoice()
+    let playerChoice = event.target.textContent
+
     console.log("Computer selected: " + computerChoice)
 
     let winStr = `Congratulations! ${playerChoice} beats ${computerChoice}!`;
@@ -68,14 +71,7 @@ function getPlayerChoice () {
             return getPlayerChoice()
     }
 }
-for (x = 0; x < 5; x++) {
-    playRound(getComputerChoice(), getPlayerChoice())
-}
-console.log(`Total score is ${playerScore} for you and ${computerScore} for computer!`)
-if (playerScore > computerScore) {
-    console.log("Yay, you won overall! Congrats!")
-} else if (playerScore < computerScore) {
-    console.log("Oh, computer won, better luck next time!")
-} else {
-    console.log("It's a tie! You might wanna play again to see who will win!")
-}
+
+const buttons = document.querySelector(".btn-div");
+
+buttons.addEventListener("click", playRound)
