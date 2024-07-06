@@ -3,45 +3,54 @@ let playerScore = 0;
 let computerScore = 0;
 
 function playRound(event) {
-    let computerChoice = getComputerChoice()
-    let playerChoice = event.target.textContent
+    let computerChoice = getComputerChoice();
+    let playerChoice = event.target.textContent;
 
     console.log("Computer selected: " + computerChoice)
 
     let winStr = `Congratulations! ${playerChoice} beats ${computerChoice}!`;
-    let loseStr = `Aww, ${computerChoice} beats ${playerChoice}!`
+    let loseStr = `Aww, ${computerChoice} beats ${playerChoice}!`;
+
+    const resultList = document.querySelector(".result-div")
+    const para = document.createElement("p");
 
     if (computerChoice === playerChoice) {
-        console.log(`Its a tie, you both selected ${computerChoice}`);
+        playerWins();
     } else if (computerChoice === "Rock") {
         if (playerChoice === "Paper") {
-            console.log(winStr);
+            playerWins(true);
             playerScore++
         } else {
-            console.log(loseStr);
+            playerWins(false);
             computerScore++
         }
     } else if (computerChoice === "Paper") {
         if (playerChoice === "Scissors") {
-            console.log(winStr);
+            playerWins(true);
             playerScore++
         } else {
-            console.log(loseStr);
+            playerWins(false);
             computerScore++
         }
     } else {
         if (playerChoice === "Rock") {
-            console.log(winStr);
+            playerWins(true);
             playerScore++
         } else {
-            console.log(loseStr);
+            playerWins(false);
             computerScore++
         }
     }
 
-    // if (confirm("Want to play again?")) {
-    //     playRound()
-    // }
+    resultList.appendChild(para);
+
+
+    function playerWins(wins) {
+        if (wins === true) para.textContent = winStr;
+        else if (wins === false) para.textContent = loseStr;
+        else para.textContent = `Its a tie, you both selected ${computerChoice}`;
+    }
+
 
 }
 
@@ -72,6 +81,6 @@ function getPlayerChoice () {
     }
 }
 
-const buttons = document.querySelector(".btn-div");
+const buttons = document.querySelector("div.btn-div");
 
 buttons.addEventListener("click", playRound)
