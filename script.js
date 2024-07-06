@@ -1,6 +1,9 @@
 console.log("Hello, Player!");
 let playerScore = 0;
 let computerScore = 0;
+const paraPlyScore = document.querySelector("#ply-score");
+const paraCompScore = document.querySelector("#comp-score")
+
 
 function playRound(event) {
     let computerChoice = getComputerChoice();
@@ -39,25 +42,34 @@ function playRound(event) {
             computerScore++
         }
     }
+    paraCompScore.textContent = computerScore;
+    paraPlyScore.textContent = playerScore;
+
 
     resultList.appendChild(para);
-    const scorePara = document.createElement("p")
+    const scorePara = document.querySelector(".score");
 
     if (playerScore == 5 || computerScore == 5) {
-        if (playerScore == 5) scorePara.textContent = "Congrats! You won this round!"
-        else scorePara.textContent = "You lost this round! Better luck next time!"
+        if (playerScore == 5) {
+            scorePara.textContent = "Congrats! You won this round!";
+            scorePara.setAttribute("class", "win-round score");
+        }
+        else {
+            scorePara.textContent = "You lost this round! Better luck next time!";
+            scorePara.setAttribute("class", "lose-round score");
+        }
 
         playerScore = 0;
         computerScore = 0;
+        resultList.textContent = "";
     }
-    resultList.appendChild(scorePara)
 
     function playerWins(wins) {
         if (wins === true) para.textContent = winStr;
         else if (wins === false) para.textContent = loseStr;
         else para.textContent = `Its a tie, you both selected ${computerChoice}`;
     }
-    console.log(playerScore, computerScore)
+    
 
 
 }

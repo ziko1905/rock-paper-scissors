@@ -1,0 +1,36 @@
+body {
+    display: block;
+    text-align: center;
+}
+
+.points {
+    display: flex;
+    width: 200px;
+    margin: 10px auto;
+    justify-content: space-around;
+}
+
+.points p {
+    font-size: 22px;
+}
+
+.score {
+    width: 400px;
+    height: 20px;
+    padding: 10px;
+    font-size: 20px;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+
+.win-round {
+    background-color: rgb(76, 163, 76);
+}
+
+.lose-round {
+    background-color: rgb(255, 113, 113);
+}
+
+button {
+    padding: 10px 20px;
+}
