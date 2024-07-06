@@ -6,8 +6,6 @@ function playRound(event) {
     let computerChoice = getComputerChoice();
     let playerChoice = event.target.textContent;
 
-    console.log("Computer selected: " + computerChoice)
-
     let winStr = `Congratulations! ${playerChoice} beats ${computerChoice}!`;
     let loseStr = `Aww, ${computerChoice} beats ${playerChoice}!`;
 
@@ -43,13 +41,23 @@ function playRound(event) {
     }
 
     resultList.appendChild(para);
+    const scorePara = document.createElement("p")
 
+    if (playerScore == 5 || computerScore == 5) {
+        if (playerScore == 5) scorePara.textContent = "Congrats! You won this round!"
+        else scorePara.textContent = "You lost this round! Better luck next time!"
+
+        playerScore = 0;
+        computerScore = 0;
+    }
+    resultList.appendChild(scorePara)
 
     function playerWins(wins) {
         if (wins === true) para.textContent = winStr;
         else if (wins === false) para.textContent = loseStr;
         else para.textContent = `Its a tie, you both selected ${computerChoice}`;
     }
+    console.log(playerScore, computerScore)
 
 
 }
@@ -63,21 +71,6 @@ function getComputerChoice() {
         return "Scissors";
     } else {
         return "Paper";
-    }
-}
-
-function getPlayerChoice () {
-    playerChoice = prompt("Rock, Paper or Scissors? What is your choice?");    
-
-    switch (playerChoice.toLocaleLowerCase()) {
-        case "rock":
-            return "Rock"
-        case "paper":
-            return "Paper"
-        case "scissors":
-            return "Scissors"
-        default:
-            return getPlayerChoice()
     }
 }
 
